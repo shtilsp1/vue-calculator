@@ -93,4 +93,47 @@
 </script>
 
 <style>
+.calculator {
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  background: #f9f9f9;
+}
+
+.screen {
+  font-size: 24px;
+  padding: 8px;
+  margin-bottom: 16px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 40px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+button {
+  font-size: 18px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:active {
+  background: #003f7f;
+}
 </style>
