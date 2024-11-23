@@ -26,8 +26,70 @@
 </template>
 
 <script lang="ts">
-  import {defineComponent} from "vue";
-  export default defineComponent({})
+
+
+  import { ref } from 'vue';
+
+  export default {
+    setup() {
+      const display = ref('');
+      const currentOperation = ref('');
+      const firstOperand = ref('');
+      const secondOperand = ref('');
+
+      const appendNumber = (num: string) => {
+        if (currentOperation.value) {
+          secondOperand.value += num;
+          display.value = secondOperand.value;
+        } else {
+          firstOperand.value += num;
+          display.value = firstOperand.value;
+        }
+      };
+
+      const chooseOperation = (operation: string) => {
+        if (!firstOperand.value) return;
+        currentOperation.value = operation;
+      };
+
+      const calculate = () => {
+        if (!firstOperand.value || !secondOperand.value || !currentOperation.value) return;
+
+        const num1 = parseFloat(firstOperand.value);
+        const num2 = parseFloat(secondOperand.value);
+        let result = 0;
+
+        switch (currentOperation.value) {
+          case '+':
+            result = num1 + num2;
+            break;
+          case '-':
+            result = num1 - num2;
+            break;
+          case '*':
+            result = num1 * num2;
+            break;
+          case '/':
+            result = num1 / num2;
+            break;
+        }
+
+        display.value = result.toString();
+        firstOperand.value = result.toString();
+        secondOperand.value = '';
+        currentOperation.value = '';
+      };
+
+      const clear = () => {
+        display.value = '';
+        firstOperand.value = '';
+        secondOperand.value = '';
+        currentOperation.value = '';
+      };
+
+      return {display, appendNumber, chooseOperation, calculate, clear};
+    }
+  };
 </script>
 
 <style>
